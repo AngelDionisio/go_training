@@ -17,7 +17,7 @@ func main() {
 	minedOreChannel := make(chan string)
 	quitChan := make(chan string)
 
-	go func(){
+	go func() {
 		quitChan <- "that's all folks!"
 	}()
 
@@ -39,7 +39,7 @@ func main() {
 		// Note: Ranging over a channel will block until another item is sent to the channel.
 		// The only way to stop the goroutine from blocking after all sends have ocurred is
 		// by closing the channel with 'close(channel)'
-		
+
 		// for i := 0; i < 3; i++ {
 		// 	foundOre := <-oreChannel // read from oreChannel
 		// 	fmt.Println("Miner: received", foundOre, "from finder")
@@ -54,7 +54,7 @@ func main() {
 			fmt.Println("From Smelter: Ore is smelted")
 		}
 	}()
-	
+
 	// <-quitChan
 	<-time.After(time.Second * 5) // Again, ignore this for now
 
