@@ -94,6 +94,9 @@ func checkURL(url string, c chan *CustomResponse, wg *sync.WaitGroup) {
 }
 
 func readResponseBody(res *http.Response) ([]byte, error) {
+	// close the response once we return from the function
+	defer res.Body.Close()
+
 	content, err := ioutil.ReadAll(res.Body)
 	if err != nil {
 		fmt.Println("Error reading response due to:", err)
