@@ -61,6 +61,7 @@ func getComicForGoRoutine(comicID int, c chan Comic, wg *sync.WaitGroup) error {
 	if err != nil {
 		c <- Comic{}
 	}
+	defer resp.Body.Close()
 
 	var comic Comic
 	err = json.NewDecoder(resp.Body).Decode(&comic)
